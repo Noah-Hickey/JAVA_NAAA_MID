@@ -63,10 +63,10 @@ public class Prescription {
     public String toString() {
         return "Prescription ID: " + id + "\n" +
                "Doctor: " + doctor.getName() + "\n" +
-               "Patient: " + patient.getName() + "\n" +
-               "Medication: " + medication.getName() + "\n" +
-               "Issued Date: " + issueDate + "\n" +
-               "Expires On: " + expiryDate + "\n" +
-               (isExpired() ? "Alert! Prescription expired" : "Prescription is not expired");
+               "Patient: " + patient.getName() + "\n";
+            //    "Medication: " + medication.getName() + "\n" +
+            //    "Issued Date: " + issueDate + "\n" +
+            //    "Expires On: " + expiryDate + "\n" +
+            //    (isExpired() ? "Alert! Prescription expired" : "Prescription is not expired");
     }
 }
