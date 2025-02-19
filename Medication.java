@@ -32,19 +32,19 @@ public class Medication {
 
     // Getters //
 
-    public int getid() {
+    public int getId() {
         return id;
     }
 
-    public String getname() {
+    public String getName() {
         return name;
     }
 
-    public String getdose() {
+    public String getDose() {
         return dose;
     }
 
-    public int getquantity() {
+    public int getQuantity() {
         return quantity;
     }
 
