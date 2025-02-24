@@ -98,7 +98,7 @@ public class Menu {
     }
 
     private static void checkExpiredMeds(MedicationTrackingSystem system) {
-
+      system.checkExpiredMeds();
     }
 
     private static void printPharmacyReport(MedicationTrackingSystem system) {

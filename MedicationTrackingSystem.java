@@ -49,6 +49,12 @@ public class MedicationTrackingSystem {
         Medication med4 = new Medication(4, "Morphine", "5mg", 5);
         medications.add(med4);
 
+        Medication med5 = new Medication(5, "Penicillin", "10mg", 5);
+        medications.add(med5);
+
+        Medication med6 = new Medication(6, "Chocolate", "1.5kg", 5);
+        medications.add(med6);
+
         Prescription script1 = new Prescription(doctor1, patient1, med1);
         prescriptions.add(script1);
 
@@ -114,7 +120,7 @@ public class MedicationTrackingSystem {
         }
         return null;
     }
-    
+
     public void displayDoctors() {
         System.out.println("\n=== List of Doctors ===");
         for (Doctor doc : doctors) {
@@ -164,6 +170,21 @@ public class MedicationTrackingSystem {
         System.out.println("\n=================================");
         System.out.println("         END OF REPORT");
         System.out.println("=================================");
+    }
+
+    // A function to check if a medication is expired and print a message
+    public void checkExpiredMeds() {
+        System.err.println("\nChecking for expired medications...\n");
+
+        for (Medication med : medications) {
+            if (med.getExpirationDate().isBefore(java.time.LocalDate.now())) {
+                System.out.println(" - Medication " + med.getName() + " expired on " + med.getExpirationDate() + "!");
+            }
+        }
+
+        if (medications.stream().noneMatch(med -> med.getExpirationDate().isBefore(java.time.LocalDate.now()))) {
+            System.out.println("No expired medications found.");
+        }
     }
 
 
