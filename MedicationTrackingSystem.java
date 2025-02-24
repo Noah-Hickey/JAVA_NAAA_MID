@@ -77,5 +77,43 @@ public class MedicationTrackingSystem {
         }
     }
 
+    public void acceptPrescription(int patientID, int doctorID, int medicationID) {
+        Patient patient = findPatientByID(patientID);
+        Doctor doctor = findDoctorByID(doctorID);
+        Medication medication = findMedicationByID(medicationID);
+
+        if (patient == null || doctor == null || medication == null) {
+            System.out.println("Error: Invalid patient, doctor, or medication ID.");
+            return;
+        }
+
+        Prescription newPrescription = new Prescription(doctor, patient, medication);
+        prescriptions.add(newPrescription);
+        patient.addPrescription(newPrescription);
+
+        System.out.println("Success! Prescription added for" + patient.getName() + ". Prescribed by Dr. " + doctor.getName());
+    }
+
+    private Patient findPatientByID (int id) {
+        for (Patient p : patients) {
+            if (p.getId() == id) return p;
+        }
+        return null;
+    }
+
+    private Doctor findDoctorByID (int id) {
+        for (Doctor d : doctors) {
+            if (d.getId() == id) return d;
+        }
+        return null;
+    }
+
+    private Medication findMedicationByID(int id) {
+        for (Medication m : medications) {
+            if (m.getId() == id) return m;
+        }
+        return null;
+    }
+
 
 }

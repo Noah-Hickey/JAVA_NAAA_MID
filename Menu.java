@@ -84,6 +84,16 @@ public class Menu {
     }
 
     private static void processANewScript(Scanner scanner, MedicationTrackingSystem system) {
+        System.out.println("Enter Patient ID: ");
+        int patientID = scanner.nextInt();
+
+        System.out.println("Enter Doctor ID: ");
+        int doctorID = scanner.nextInt();
+
+        System.out.println("Enter Medication ID: ");
+        int medicationID = scanner.nextInt();
+
+        system.acceptPrescription(patientID, doctorID, medicationID);
 
     }
 
