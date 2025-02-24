@@ -92,7 +92,7 @@ public class Menu {
     }
 
     private static void printPharmacyReport(MedicationTrackingSystem system) {
-
+      system.generateReport();
     }
 
     

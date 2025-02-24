@@ -71,10 +71,61 @@ public class MedicationTrackingSystem {
     }
 
     public void displayPatients() {
-        System.out.println("Patients:");
+        System.out.println("\n=== List of Patients ===");
         for (Patient pat : patients) {
             System.out.println(pat);
         }
+    }
+
+    public void displayDoctors() {
+        System.out.println("\n=== List of Doctors ===");
+        for (Doctor doc : doctors) {
+            System.out.println(doc);
+        }
+    }
+
+    public void displayMedications() {
+        System.out.println("\n=== List of Medications ===");
+        for (Medication med : medications) {
+            System.out.println(med);
+        }
+    }
+
+    public void displayPrescriptions() {
+        System.out.println("\n=== List of Prescriptions ===");
+        for (Prescription pres : prescriptions) {
+            System.out.println(pres);
+        }
+    }
+
+    public void generateReport() {
+        System.out.println("\n=====================================");
+        System.out.println("       MEDICATION SYSTEM REPORT");
+        System.out.println("=====================================\n");
+
+        System.out.println("Doctors:");
+        for (Doctor doc : doctors) {
+            System.out.println("- " + doc);
+        }
+
+        System.out.println("\nPatients:");
+        for (Patient pat : patients) {
+            System.out.println("- " + pat);
+        }
+
+        System.out.println("\nMedications:");
+        for (Medication med : medications) {
+            System.out.println("- " + med);
+        }
+
+        System.out.println("\nPrescriptions:");
+        for (Prescription pres : prescriptions) {
+            System.out.println("\n" + pres);
+        }
+
+        System.out.println("\n=================================");
+        System.out.println("         END OF REPORT");
+        System.out.println("=================================");
     }
 
 
