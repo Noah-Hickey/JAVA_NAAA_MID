@@ -3,11 +3,11 @@ import java.util.Scanner;
 public class Menu {
     public static void main(String[] args) {
         MedicationTrackingSystem system = new MedicationTrackingSystem();
+        Scanner scanner = new Scanner(System.in);
 
         boolean exit = false;
 
         while (!exit){
-            Scanner scanner = new Scanner(System.in);
             System.out.println();
             System.out.println("=====Welcome To The Pharmacy Med Tracking System=====");
             System.out.println("What would you like to do? ");
@@ -20,8 +20,12 @@ public class Menu {
             System.out.println("7: Print All Scripts For Specific Doctor");
             System.out.println("8: Restock the drugs in the pharmacy");
             System.out.println("9: print all scripts for specific patient");
-            System.out.println("10: Exit");
+            System.out.println("10: Search for Patients, Doctors, and Medications by name");
+            System.out.println("11: Exit The System");
+
             int option = scanner.nextInt();
+            scanner.nextLine(); // Fixes issue where it printed the menu twice //
+
             switch (option) {
                 case 1 -> addANewPatient(scanner, system);
                 case 2 -> addANewDoctor(scanner);
@@ -32,7 +36,8 @@ public class Menu {
                 case 7 -> printScriptsForSpecificDoctor(scanner, system);
                 case 8 -> restockPharmacyDrugs(scanner, system);
                 case 9 -> printAllScriptsForPatientByName(scanner, system);
-                case 10 -> {
+                case 10 -> searchForPatMedDoc(scanner, system);
+                case 11 -> {
                     exit = true;
                     System.out.println("Exiting The System! Good Bye!");
                 }
@@ -96,7 +101,11 @@ public class Menu {
     }
 
     
+    private static void searchForPatMedDoc(Scanner scanner, MedicationTrackingSystem system) {
 
+        system.interactiveSearch(scanner);
+
+    }
     
 
     

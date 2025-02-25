@@ -44,7 +44,7 @@ public class MedicationTrackingSystem {
         }
     }
 
-    // Method to search for a patient by name - not case-sensitive //
+    // Method to search for a patient by name - not case-sensitive - assisted by Chat GPT //
 
     public void searchPatient(String name) {
 
@@ -116,16 +116,16 @@ public class MedicationTrackingSystem {
             System.out.println("4. Exit Search");
             System.out.println();
             System.out.println("Enter your choice: ");
-            int choice;
+            int searchchoice;
 
             try {
-                choice = Integer.parseInt(scanner.nextLine()); // Accepts user input //
+                searchchoice = Integer.parseInt(scanner.nextLine()); // Accepts user input //
             } catch (NumberFormatException e) { // Validates the input is a number //
                 System.out.println("Invalid choice. Please enter a number.");
                 continue; // Restarts the loop //
             }
             
-            if (choice == 4) {
+            if (searchchoice == 4) {
                 System.out.println("Exiting search...");
                 break; // Exits the loop //
             }
@@ -133,7 +133,7 @@ public class MedicationTrackingSystem {
             System.out.print("Enter name to search: "); // Prompts the user to enter a name to search //
             String searchTerm = scanner.nextLine();
 
-            switch (choice) { // Switch statement to determine the search type //
+            switch (searchchoice) { // Switch statement to determine the search type //
                 case 1:
                     searchPatient(searchTerm); // Calls the searchPatient method //
                     break;
@@ -149,11 +149,11 @@ public class MedicationTrackingSystem {
         
         }
     }
-    // Main method //
-    public static void main(String[] args) {
-        MedicationTrackingSystem system = new MedicationTrackingSystem(); // Creates an instance of the tracking system //
-        Scanner scanner = new Scanner(System.in);
-        system.interactiveSearch(scanner);
-        scanner.close();
-    }
+    // // Main method //
+    // public static void main(String[] args) {
+    //     // MedicationTrackingSystem system = new MedicationTrackingSystem(); // Creates an instance of the tracking system //
+    //     Scanner scanner = new Scanner(System.in);
+    //     system.interactiveSearch(scanner);
+    //     scanner.close();
+    // }
 }
