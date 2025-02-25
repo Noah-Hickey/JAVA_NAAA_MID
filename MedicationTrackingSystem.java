@@ -86,6 +86,36 @@ public class MedicationTrackingSystem {
         }
     }
 
+    public void assignPatientToDoctor() {
+    System.out.println("\n=== Assign a Patient to a Doctor ===");
+
+    displayPatients();
+    System.out.print("Enter the Patient ID: ");
+    int patientID = scanner.nextInt();
+    scanner.nextLine();  
+
+    Patient selectedPatient = findPatientByID(patientID);
+    if (selectedPatient == null) {
+        System.out.println("Error: Invalid Patient ID.");
+        return;
+    }
+
+    displayDoctors();
+    System.out.print("Enter the Doctor ID: ");
+    int doctorID = scanner.nextInt();
+    scanner.nextLine();  
+
+    Doctor selectedDoctor = findDoctorByID(doctorID);
+    if (selectedDoctor == null) {
+        System.out.println("Error: Invalid Doctor ID.");
+        return;
+    }
+
+    selectedDoctor.addPatient(selectedPatient);
+    System.out.println("Success! " + selectedPatient.getName() + " has been assigned to Dr. " + selectedDoctor.getName());
+}
+
+
     public void acceptPrescription(int patientID, int doctorID, int medicationID) {
         Patient patient = findPatientByID(patientID);
         Doctor doctor = findDoctorByID(doctorID);

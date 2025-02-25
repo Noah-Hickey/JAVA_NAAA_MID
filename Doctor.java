@@ -3,13 +3,13 @@ import java.util.List;
 
 public class Doctor extends Person {
     private String specialization;
-    private List<Patient> patients;
+    private List<Patient> assignedPatients;
 
     // Constructor
     public Doctor(int id, String name, int age, String phoneNumber, String specialization) {
         super(id, name, age, phoneNumber);
         this.specialization = specialization;
-        this.patients = new ArrayList<>();
+        this.assignedPatients = new ArrayList<>();
     }
 
     // Getters and setters for specialization
@@ -24,17 +24,17 @@ public class Doctor extends Person {
     // Methods to add and remove patients
     public void addPatient(Patient patient) {
         if (patient != null) {
-            patients.add(patient);
+            assignedPatients.add(patient);
         }
     }
 
     public void removePatient(Patient patient) {
-        patients.remove(patient);
+        assignedPatients.remove(patient);
     }
 
     // Get patients list
     public List<Patient> getPatients() {
-        return new ArrayList<>(patients);
+        return new ArrayList<>(assignedPatients);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class Doctor extends Person {
                 ", Age=" + getAge() +
                 ", Phone Number='" + getPhoneNumber() + '\'' +
                 ", Specialization='" + specialization + '\'' +
-                ", Patients=" + patients +
+                ", Patients=" + assignedPatients +
                 '}';
     }
 }

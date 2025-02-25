@@ -21,7 +21,8 @@ public class Menu {
             System.out.println("8: Restock the drugs in the pharmacy");
             System.out.println("9: print all scripts for specific patient");
             System.out.println("10: Search for Patients, Doctors, and Medications by name");
-            System.out.println("11: Exit The System");
+            System.out.println("11: Assign a patient to a doctor");
+            System.out.println("12: Exit The System");
 
             int option = scanner.nextInt();
             scanner.nextLine(); // Fixes issue where it printed the menu twice //
@@ -37,7 +38,8 @@ public class Menu {
                 case 8 -> restockPharmacyDrugs(scanner, system);
                 case 9 -> printAllScriptsForPatientByName(scanner, system);
                 case 10 -> searchForPatMedDoc(scanner, system);
-                case 11 -> {
+                case 11 -> assignPatientToDoctor(scanner, system);
+                case 12 -> {
                     exit = true;
                     System.out.println("Exiting The System! Good Bye!");
                 }
@@ -67,6 +69,10 @@ public class Menu {
         system.displayPatients();
 
     }
+    private static void assignPatientToDoctor(Scanner scanner, MedicationTrackingSystem system) {
+    system.assignPatientToDoctor();
+}
+    
 
     private static void addANewDoctor(Scanner scanner) {
     
