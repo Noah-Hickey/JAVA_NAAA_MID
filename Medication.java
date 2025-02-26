@@ -28,8 +28,6 @@ public class Medication {
         this.expirationDate = generateRandomExpiryDate();
     }
 
-
-
     // Getters //
 
     public int getId() {
@@ -77,5 +75,7 @@ public class Medication {
                 ", expirationDate=" + expirationDate +
                 '}';
     }
+
+    
 
 }

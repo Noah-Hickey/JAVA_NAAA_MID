@@ -87,7 +87,7 @@ public class Menu {
     }
 
     private static void restockPharmacyDrugs(Scanner scanner, MedicationTrackingSystem system) {
-
+        system.restockMedications(scanner);
     }
 
     private static void printScriptsForSpecificDoctor(Scanner scanner, MedicationTrackingSystem system) {
