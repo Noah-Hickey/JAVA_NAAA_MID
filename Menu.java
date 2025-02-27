@@ -31,15 +31,21 @@ public class Menu {
                 case 1 -> addANewPatient(scanner, system);
                 case 2 -> addANewDoctor(scanner);
                 case 3 -> addNewMedicationToPharmacy(scanner, system);
-                case 4 -> printPharmacyReport(system);
-                case 5 -> checkExpiredMeds(system);
-                case 6 -> processANewScript(scanner, system);
-                case 7 -> printScriptsForSpecificDoctor(scanner, system);
-                case 8 -> restockPharmacyDrugs(scanner, system);
-                case 9 -> printAllScriptsForPatientByName(scanner, system);
-                case 10 -> searchForPatMedDoc(scanner, system);
-                case 11 -> assignPatientToDoctor(scanner, system);
-                case 12 -> {
+                case 4 -> deletePatient(scanner, system);
+                case 5 -> deleteDoctor(scanner, system);
+                case 6 -> deleteMedication(scanner, system);
+                case 7 -> editPatient(scanner, system);
+                case 8 -> editDoctor(scanner, system);
+                case 9 -> editMedication(scanner, system);
+                case 10 -> printPharmacyReport(system);
+                case 11 -> checkExpiredMeds(system);
+                case 12 -> processANewScript(scanner, system);
+                case 13 -> printScriptsForSpecificDoctor(scanner, system);
+                case 14 -> restockPharmacyDrugs(scanner, system);
+                case 15 -> printAllScriptsForPatientByName(scanner, system);
+                case 16 -> searchForPatMedDoc(scanner, system);
+                case 17 -> assignPatientToDoctor(scanner, system);
+                case 18 -> {
                     exit = true;
                     System.out.println("Exiting The System! Good Bye!");
                 }
@@ -79,6 +85,30 @@ public class Menu {
     }
 
     private static void addNewMedicationToPharmacy(Scanner scanner, MedicationTrackingSystem system) {
+
+    }
+
+    private static void deletePatient(Scanner scanner, MedicationTrackingSystem system) {
+
+    }
+
+    private static void deleteDoctor(Scanner scanner, MedicationTrackingSystem system) {
+
+    }
+
+    private static void deleteMedication(Scanner scanner, MedicationTrackingSystem system) {
+
+    }
+
+    private static void editPatient(Scanner scanner, MedicationTrackingSystem system) {
+
+    }
+
+    private static void editDoctor(Scanner scanner, MedicationTrackingSystem system) {
+
+    }
+
+    private static void editMedication(Scanner scanner, MedicationTrackingSystem system) {
 
     }
     
