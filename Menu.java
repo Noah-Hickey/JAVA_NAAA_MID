@@ -91,8 +91,18 @@ public class Menu {
     }
 
     private static void printScriptsForSpecificDoctor(Scanner scanner, MedicationTrackingSystem system) {
-
+        System.out.print("Enter Doctor ID: ");
+        
+        if (scanner.hasNextInt()) { 
+            int doctorID = scanner.nextInt();
+            scanner.nextLine();  
+            system.generateDoctorReport(doctorID);
+        } else {
+            System.out.println("Invalid input! Please enter a valid Doctor ID.");
+            scanner.nextLine(); 
+        }
     }
+
 
     private static void processANewScript(Scanner scanner, MedicationTrackingSystem system) {
         System.out.println("Enter Patient ID: ");

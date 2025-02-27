@@ -1,7 +1,6 @@
 // import java.lang.classfile.instruction;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 public class MedicationTrackingSystem {
@@ -227,12 +226,12 @@ public class MedicationTrackingSystem {
 
         List<Patient> searchResults = new ArrayList<>(); // Creating a list to store search results //
 
-        for (Patient patient : patients) { 
-            if (patient.getName().toLowerCase().contains(name.toLowerCase())) { 
-                searchResults.add(patient); 
+        for (Patient patient : patients) { // Loops through the list of patients //
+            if (patient.getName().toLowerCase().contains(name.toLowerCase())) { //Performing a case-insensitive search //
+                searchResults.add(patient); // Adds the patient to the search results //
             }
         }
-        displaySearchResults(searchResults,"Patients"); 
+        displaySearchResults(searchResults,"Patients"); // Displays the search results //
     }
 
     //Mehtod to search for a doctor by name - not case-sensitive //
@@ -241,12 +240,12 @@ public class MedicationTrackingSystem {
 
         List<Doctor> searchResults = new ArrayList<>(); //Creating a list to store search results //
 
-        for (Doctor doctor : doctors) { 
-            if (doctor.getName().toLowerCase().contains(name.toLowerCase())) { 
-                searchResults.add(doctor); 
+        for (Doctor doctor : doctors) { // Loops through the list of doctors //
+            if (doctor.getName().toLowerCase().contains(name.toLowerCase())) { //Performing a case-insensitive search //
+                searchResults.add(doctor); // Adds the doctor to the search results //
             }
         }
-        displaySearchResults(searchResults,"Doctors");
+        displaySearchResults(searchResults,"Doctors"); // Displays the search results //
     }
 
     //Method to search for a medication by name - not case-sensitive //
@@ -255,23 +254,23 @@ public class MedicationTrackingSystem {
 
         List<Medication> searchResults = new ArrayList<>(); // Creating a list to store search results //
 
-        for (Medication medication : medications) { 
-            if (medication.getName().toLowerCase().contains(name.toLowerCase())) { 
-                searchResults.add(medication); 
+        for (Medication medication : medications) { // Loops through the list of medications //
+            if (medication.getName().toLowerCase().contains(name.toLowerCase())) { //Performing a case-insensitive search //
+                searchResults.add(medication); // Adds the medication to the search results //
             }
         }
-        displaySearchResults(searchResults,"Medications"); 
+        displaySearchResults(searchResults,"Medications"); // Displays the search results //
     }
 
     // Method to display search results - Assisted by ChatGPT//
 
     public void displaySearchResults(List<?> results, String type) { // Accepts a list of any type and a string - "?" is any type of list//
         if (results.isEmpty()) {
-            System.out.println(type + " not found."); 
+            System.out.println(type + " not found."); // Displays a message if no results are found //
         } else {
-            System.out.println(type + "(s) found:"); 
-            for (Object obj : results) { 
-                System.out.println(obj); 
+            System.out.println(type + "(s) found:"); // Displays the found search results //
+            for (Object obj : results) { // Loops through the list of search results //
+                System.out.println(obj); // Displays the search results //
             }
         }
     }
@@ -297,110 +296,61 @@ public class MedicationTrackingSystem {
 
             try {
                 searchchoice = Integer.parseInt(scanner.nextLine()); // Accepts user input //
-            } catch (NumberFormatException e) { 
+            } catch (NumberFormatException e) { // Validates the input is a number //
                 System.out.println("Invalid choice. Please enter a number.");
-                continue; 
+                continue; // Restarts the loop //
             }
             
             if (searchchoice == 4) {
                 System.out.println("Exiting search...");
-                break; 
+                break; // Exits the loop //
             }
 
-            System.out.print("Enter name to search: "); 
+            System.out.print("Enter name to search: "); // Prompts the user to enter a name to search //
             String searchTerm = scanner.nextLine();
 
-            switch (searchchoice) { 
+            switch (searchchoice) { // Switch statement to determine the search type //
                 case 1:
-                    searchPatient(searchTerm); 
+                    searchPatient(searchTerm); // Calls the searchPatient method //
                     break;
                 case 2:
-                    searchDoctor(searchTerm);  
+                    searchDoctor(searchTerm);  // Calls the searchDoctor method //
                     break;
                 case 3:
-                    searchMedication(searchTerm); 
+                    searchMedication(searchTerm); // Calls the searchMedication method //
                     break;
                 default:
-                    System.out.println("Invalid choice! Please enter a valid option."); 
+                    System.out.println("Invalid choice! Please enter a valid option."); // Displays a message if an invalid option is entered //
             }
         
         }
     }
 
-    // Restocking Medications - Debugged and assisted by ChatGPT. //
-    public void restockMedications(Scanner scanner) {
-        if (medications.isEmpty()) {
-            System.out.println("No medications found to restock.");
+
+    // Prints a report for prescriptions associated with a specific Doctor
+    
+    public void generateDoctorReport(int doctorID) {
+    Doctor doctor = findDoctorByID(doctorID);
+
+    if (doctor == null) {
+        System.out.println("Error: Doctor ID not found.");
         return;
-        }
-        while (true) { 
-            
-        System.out.println("\nRestocking Menu:");
-        System.out.println("1. Restock all medications automatically");
-        System.out.println("2. Restock a specific medication");
-        System.out.println("3. Return to Main Menu");
-        System.out.print("Enter your choice: ");
+    }
 
-        int choice;
-        try {
-            choice = Integer.parseInt(scanner.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input, please enter a valid number.");
-            continue;
-        }
+    System.out.println("\n=== Prescriptions for Dr. " + doctor.getName() + " ===");
 
-        // Automatic Restocking
-
-        if (choice == 1) {
-            Random rand = new Random();
-            System.out.println("Restocking All Medications...");
-            for (Medication med : medications) {
-                int restockAmount = rand.nextInt(51) + 10; // Randomly gets a stock amount between 10 and 60. //
-                med.setQuantity(med.getQuantity() + restockAmount);
-                System.out.println("Restocked " + med.getName() + " by " + restockAmount + ". New Quantity: " + med.getQuantity());
-            }
-            System.out.println("Medications have been restocked successfully!");
-
-           // Restocking by medication name/ID // 
-        } else if (choice == 2) {
-            System.out.println("Enter medication name/ID to restock");
-            String input = scanner.nextLine().trim();
-
-            Medication foundMed = null; 
-
-            for (Medication med : medications) {
-                if (med.getName().equalsIgnoreCase(input) || String.valueOf(med.getId()).equals(input)) {
-                    foundMed = med;
-                    break;
-                }
-            }
-            if (foundMed == null ) {
-                System.out.println("Medication not found.");
-                continue;
-            }
-
-            System.out.println("Enter the quantity to add: ");
-            int restockAmount;
-            try {
-                restockAmount = Integer.parseInt(scanner.nextLine());
-                if (restockAmount < 0) {
-                    System.out.println("Invalid amount. Please enter a positive number.");
-                    continue;
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid number.");
-                continue;
-            }
-
-            foundMed.setQuantity(foundMed.getQuantity() + restockAmount);
-            System.out.println("Successfully restocked " + foundMed.getName() + " by " + restockAmount + " . New Quanity: " + foundMed.getQuantity());
-        }else if (choice == 3) {
-                System.out.println("Returning to Main Menu...");
-                break;
-        } else {
-            System.out.println("Invalid option. Please select 1,2, or 3.");
+    boolean hasPrescriptions = false;
+    for (Prescription pres : prescriptions) {
+        if (pres.getDoctor().getId() == doctorID) {
+            System.out.println(pres);
+            hasPrescriptions = true;
         }
     }
+
+    if (!hasPrescriptions) {
+        System.out.println("No prescriptions found for Dr. " + doctor.getName());
     }
-   
+}
+
+
 }
