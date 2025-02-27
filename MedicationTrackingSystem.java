@@ -426,7 +426,7 @@ public class MedicationTrackingSystem {
 
 
 
-    // Restocking Medications - Debugged and assisted by ChatGPT. //
+    // Restocking Medications  //
     public void restockMedications(Scanner scanner) {
         if (medications.isEmpty()) {
             System.out.println("No medications found to restock.");
