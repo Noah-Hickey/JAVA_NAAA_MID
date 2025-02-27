@@ -10,7 +10,9 @@ public class Menu {
         while (!exit){
             System.out.println();
             System.out.println("=====Welcome To The Pharmacy Med Tracking System=====");
-            System.out.println("What would you like to do? ");
+            System.out.println();
+            System.out.println("What would you like to do? Enter a number for one of the following options:");
+            System.out.println();
             System.out.println("1: Add A New Patient");
             System.out.println("2: Add A New Doctor");
             System.out.println("3: Add New Medication To Pharmacy");
@@ -126,7 +128,7 @@ public class Menu {
     }
 
     private static void restockPharmacyDrugs(Scanner scanner, MedicationTrackingSystem system) {
-        // system.restockMedications(scanner);
+        system.restockMedications(scanner);
     }
 
     private static void printScriptsForSpecificDoctor(Scanner scanner, MedicationTrackingSystem system) {
