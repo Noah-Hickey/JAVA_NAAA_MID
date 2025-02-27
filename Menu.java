@@ -42,10 +42,9 @@ public class Menu {
                 case 12 -> processANewScript(scanner, system);
                 case 13 -> printScriptsForSpecificDoctor(scanner, system);
                 case 14 -> restockPharmacyDrugs(scanner, system);
-                case 15 -> printAllScriptsForPatientByName(scanner, system);
-                case 16 -> searchForPatMedDoc(scanner, system);
-                case 17 -> assignPatientToDoctor(scanner, system);
-                case 18 -> {
+                case 15 -> searchForPatMedDoc(scanner, system);
+                case 16 -> assignPatientToDoctor(scanner, system);
+                case 17 -> {
                     exit = true;
                     System.out.println("Exiting The System! Good Bye!");
                 }
@@ -109,10 +108,6 @@ public class Menu {
     }
 
     private static void editMedication(Scanner scanner, MedicationTrackingSystem system) {
-
-    }
-    
-    private static void printAllScriptsForPatientByName(Scanner scanner, MedicationTrackingSystem system) {
 
     }
 
