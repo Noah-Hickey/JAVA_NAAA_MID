@@ -352,5 +352,76 @@ public class MedicationTrackingSystem {
     }
 }
 
+    public void editPatient(int id) {
+        Patient patient = findPatientByID(id);
+        if (patient == null) {
+            System.out.println("Error: Patient ID not found.");
+            return;
+        }
+
+        System.out.println("Enter new name: ");
+        String name = scanner.nextLine();
+        patient.setName(name);
+
+        System.out.println("Enter new age: ");
+        int age = scanner.nextInt();
+        patient.setAge(age);
+
+        System.out.println("Enter new phone number: ");
+        String phone = scanner.next();
+        patient.setPhoneNumber(phone);
+
+        System.out.println("Patient updated successfully!");
+    }
+
+    public void editDoctor(int id) {
+        Doctor doctor = findDoctorByID(id);
+        if (doctor == null) {
+            System.out.println("Error: Doctor ID not found.");
+            return;
+        }
+
+        System.out.println("Enter new name: ");
+        String name = scanner.nextLine();
+        doctor.setName(name);
+
+        System.out.println("Enter new age: ");
+        int age = scanner.nextInt();
+        doctor.setAge(age);
+
+        System.out.println("Enter new phone number: ");
+        String phone = scanner.next();
+        doctor.setPhoneNumber(phone);
+
+        System.out.println("Enter new specialty: ");
+        String specialty = scanner.next();
+        doctor.setSpecialization(specialty);
+
+        System.out.println("Doctor updated successfully!");
+    }
+
+    public void editMedication(int id) {
+        Medication medication = findMedicationByID(id);
+        if (medication == null) {
+            System.out.println("Error: Medication ID not found.");
+            return;
+        }
+
+        System.out.println("Enter new name: ");
+        String name = scanner.nextLine();
+        medication.setName(name);
+
+        System.out.println("Enter new dosage: ");
+        String dosage = scanner.next();
+        medication.setDose(dosage);
+
+        System.out.println("Enter new quantity: ");
+        int quantity = scanner.nextInt();
+        medication.setQuantity(quantity);
+
+        System.out.println("Medication updated successfully!");
+    }
+
+
 
 }
