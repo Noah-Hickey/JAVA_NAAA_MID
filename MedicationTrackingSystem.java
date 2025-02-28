@@ -78,34 +78,46 @@ public class MedicationTrackingSystem {
         prescriptions.add(script5);
     }
 
-    public void addPatient(Patient patient) {
-        patients.add(patient);
-        System.out.println("Added patient: " + patient.getName());
-    }
-
     public void displayPatients() {
-        System.out.println("\n=== List of Patients ===");
+        System.out.println("\n=== List of Patients ===\n");
         for (Patient pat : patients) {
             System.out.println(pat);
         }
     }
 
+    public void displayDoctors() {
+        System.out.println("\n=== List of Doctors ===\n");
+        for (Doctor doc : doctors) {
+            System.out.println(doc);
+        }
+    }
+
+    public void displayMedications() {
+        System.out.println("\n=== List of Medications ===\n");
+        for (Medication med : medications) {
+            System.out.println(med);
+        }
+    }
+
+    // Method to process a new prescription //
     public void assignPatientToDoctor() {
     System.out.println("\n=== Assign a Patient to a Doctor ===");
 
     displayPatients();
-    System.out.print("Enter the Patient ID: ");
+
+    System.out.print("\nEnter the Patient ID: ");
     int patientID = scanner.nextInt();
     scanner.nextLine();  
 
     Patient selectedPatient = findPatientByID(patientID);
     if (selectedPatient == null) {
-        System.out.println("Error: Invalid Patient ID.");
+        System.out.println("\nError: Invalid Patient ID.");
         return;
     }
 
     displayDoctors();
-    System.out.print("Enter the Doctor ID: ");
+    
+    System.out.print("\nEnter the Doctor ID: ");
     int doctorID = scanner.nextInt();
     scanner.nextLine();  
 
@@ -116,10 +128,10 @@ public class MedicationTrackingSystem {
     }
 
     selectedDoctor.addPatient(selectedPatient);
-    System.out.println("Success! " + selectedPatient.getName() + " has been assigned to Dr. " + selectedDoctor.getName());
+    System.out.println("\nSuccess! " + selectedPatient.getName() + " has been assigned to Dr. " + selectedDoctor.getName());
 }
 
-
+    // Method to accept a prescription //
     public void acceptPrescription(int patientID, int doctorID, int medicationID) {
         Patient patient = findPatientByID(patientID);
         Doctor doctor = findDoctorByID(doctorID);
@@ -134,9 +146,10 @@ public class MedicationTrackingSystem {
         prescriptions.add(newPrescription);
         patient.addPrescription(newPrescription);
 
-        System.out.println("Success! Prescription added for" + patient.getName() + ". Prescribed by Dr. " + doctor.getName());
+        System.out.println("\nSuccess! Prescription added for " + patient.getName() + ". Prescribed by Dr. " + doctor.getName());
     }
 
+    // Method to find a patient by ID //
     private Patient findPatientByID (int id) {
         for (Patient p : patients) {
             if (p.getId() == id) return p;
@@ -144,6 +157,7 @@ public class MedicationTrackingSystem {
         return null;
     }
 
+    // Method to find a doctor by ID //
     private Doctor findDoctorByID (int id) {
         for (Doctor d : doctors) {
             if (d.getId() == id) return d;
@@ -151,6 +165,7 @@ public class MedicationTrackingSystem {
         return null;
     }
 
+    // Method to find a medication by ID //
     private Medication findMedicationByID(int id) {
         for (Medication m : medications) {
             if (m.getId() == id) return m;
@@ -158,27 +173,7 @@ public class MedicationTrackingSystem {
         return null;
     }
 
-    public void displayDoctors() {
-        System.out.println("\n=== List of Doctors ===");
-        for (Doctor doc : doctors) {
-            System.out.println(doc);
-        }
-    }
-
-    public void displayMedications() {
-        System.out.println("\n=== List of Medications ===");
-        for (Medication med : medications) {
-            System.out.println(med);
-        }
-    }
-
-    public void displayPrescriptions() {
-        System.out.println("\n=== List of Prescriptions ===");
-        for (Prescription pres : prescriptions) {
-            System.out.println(pres);
-        }
-    }
-
+    // Method to generate a report //
     public void generateReport() {
         System.out.println("\n=====================================");
         System.out.println("       MEDICATION SYSTEM REPORT");
@@ -225,7 +220,6 @@ public class MedicationTrackingSystem {
     }
 
     // Method to search for a patient by name - not case-sensitive //
-
     public void searchPatient(String name) {
 
         List<Patient> searchResults = new ArrayList<>(); 
@@ -239,7 +233,6 @@ public class MedicationTrackingSystem {
     }
 
     //Mehtod to search for a doctor by name - not case-sensitive //
-
     public void searchDoctor(String name) {
 
         List<Doctor> searchResults = new ArrayList<>(); 
@@ -253,7 +246,6 @@ public class MedicationTrackingSystem {
     }
 
     //Method to search for a medication by name - not case-sensitive //
-
     public void searchMedication(String name) {
 
         List<Medication> searchResults = new ArrayList<>(); 
@@ -267,7 +259,6 @@ public class MedicationTrackingSystem {
     }
 
     // Method to display search results //
-
     public void displaySearchResults(List<?> results, String type) { // Accepts a list of any type and a string - "?" is any type of list//
         if (results.isEmpty()) {
             System.out.println(type + " not found."); 
@@ -279,23 +270,15 @@ public class MedicationTrackingSystem {
         }
     }
 
-
     // Method to search for patients, doctors, and medications by name by scanner //
-
     public void interactiveSearch(Scanner scanner) {
         while (true) { 
-            System.out.println();
             System.out.println("\nSearch Menu:");
-            System.out.println();
-            System.out.println("1. Search for a Patient");
-            System.out.println();
+            System.out.println("\n1. Search for a Patient");
             System.out.println("2. Search for a Doctor");
-            System.out.println();
             System.out.println("3. Search for a Medication");
-            System.out.println();
             System.out.println("4. Exit Search");
-            System.out.println();
-            System.out.println("Enter your choice: ");
+            System.out.println("\nEnter your choice: \n");
             int searchchoice;
 
             try {
@@ -314,49 +297,54 @@ public class MedicationTrackingSystem {
             String searchTerm = scanner.nextLine();
 
             switch (searchchoice) { // Switch statement to determine the search type //
-                case 1:
-                    searchPatient(searchTerm); 
-                    break;
-                case 2:
-                    searchDoctor(searchTerm);  
-                    break;
-                case 3:
-                    searchMedication(searchTerm); 
-                    break;
-                default:
-                    System.out.println("Invalid choice! Please enter a valid option."); 
+                case 1 -> searchPatient(searchTerm);
+                case 2 -> searchDoctor(searchTerm);
+                case 3 -> searchMedication(searchTerm);
+                default -> System.out.println("Invalid choice! Please enter a valid option.");
             }
         
         }
     }
 
-
     // Prints a report for prescriptions associated with a specific Doctor
-    
     public void generateDoctorReport(int doctorID) {
-    Doctor doctor = findDoctorByID(doctorID);
-
-    if (doctor == null) {
-        System.out.println("Error: Doctor ID not found.");
+    
+        Doctor doctor = findDoctorByID(doctorID);
+        
+        if (doctor == null) {
+            System.out.println("Error: Doctor ID not found.");
         return;
     }
 
-    System.out.println("\n=== Prescriptions for Dr. " + doctor.getName() + " ===");
+        System.out.println("\n=== Prescriptions for Dr. " + doctor.getName() + " ===");
 
-    boolean hasPrescriptions = false;
-    for (Prescription pres : prescriptions) {
-        if (pres.getDoctor().getId() == doctorID) {
-            System.out.println(pres);
-            hasPrescriptions = true;
+        boolean hasPrescriptions = false;
+        for (Prescription pres : prescriptions) {
+            if (pres.getDoctor().getId() == doctorID) {
+                System.err.println("");
+                System.out.println(pres);
+                hasPrescriptions = true;
+            }
         }
-    }
 
-    if (!hasPrescriptions) {
-        System.out.println("No prescriptions found for Dr. " + doctor.getName());
-    }
+        if (!hasPrescriptions) {
+            System.out.println("No prescriptions found for Dr. " + doctor.getName());
+        }
 }
 
-    public void editPatient(int id) {
+    // Method to edit a patient, doctor, or medication //
+    public void editPatient(Scanner scanner) {
+        
+
+        // print list of patients //
+        for (Patient patient : patients) {
+            System.out.println(patient);
+        }
+
+        System.out.println("\nEnter Patient ID: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        
         Patient patient = findPatientByID(id);
         if (patient == null) {
             System.out.println("Error: Patient ID not found.");
@@ -378,7 +366,15 @@ public class MedicationTrackingSystem {
         System.out.println("Patient updated successfully!");
     }
 
-    public void editDoctor(int id) {
+    // Method to edit a doctor //
+    public void editDoctor(Scanner scanner) {
+        
+        displayDoctors();
+
+        System.out.println("Enter Doctor ID: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        
         Doctor doctor = findDoctorByID(id);
         if (doctor == null) {
             System.out.println("Error: Doctor ID not found.");
@@ -404,7 +400,15 @@ public class MedicationTrackingSystem {
         System.out.println("Doctor updated successfully!");
     }
 
-    public void editMedication(int id) {
+    // Method to edit a medication //
+    public void editMedication(Scanner scanner) {
+        
+        displayMedications();
+
+        System.out.println("Enter Medication ID: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        
         Medication medication = findMedicationByID(id);
         if (medication == null) {
             System.out.println("Error: Medication ID not found.");
@@ -426,9 +430,6 @@ public class MedicationTrackingSystem {
         System.out.println("Medication updated successfully!");
     }
 
-
-
-
     // Restocking Medications  //
     public void restockMedications(Scanner scanner) {
         if (medications.isEmpty()) {
@@ -436,78 +437,79 @@ public class MedicationTrackingSystem {
         return;
         }
         while (true) { 
-            
-        System.out.println("\nRestocking Menu:");
-        System.out.println("1. Restock all medications automatically");
-        System.out.println("2. Restock a specific medication");
-        System.out.println("3. Return to Main Menu");
-        System.out.print("Enter your choice: ");
+        
+            displayMedications();
 
-        int choice;
-        try {
-            choice = Integer.parseInt(scanner.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input, please enter a valid number.");
-            continue;
-        }
+            System.out.println("\nRestocking Menu:");
+            System.out.println("1. Restock all medications automatically");
+            System.out.println("2. Restock a specific medication");
+            System.out.println("3. Return to Main Menu");
+            System.out.print("\nEnter your choice: \n");
+
+            int choice;
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input, please enter a valid number.");
+                continue;
+            }
 
         // Automatic Restocking
 
-        if (choice == 1) {
-            Random rand = new Random();
-            System.out.println("Restocking All Medications...");
-            for (Medication med : medications) {
-                int restockAmount = rand.nextInt(51) + 10; // Randomly gets a stock amount between 10 and 60. //
-                med.setQuantity(med.getQuantity() + restockAmount);
-                System.out.println("Restocked " + med.getName() + " by " + restockAmount + ". New Quantity: " + med.getQuantity());
-            }
-            System.out.println("Medications have been restocked successfully!");
-
-           // Restocking by medication name/ID // 
-        } else if (choice == 2) {
-            System.out.println("Enter medication name/ID to restock");
-            String input = scanner.nextLine().trim();
-
-            Medication foundMed = null; 
-
-            for (Medication med : medications) {
-                if (med.getName().equalsIgnoreCase(input) || String.valueOf(med.getId()).equals(input)) {
-                    foundMed = med;
-                    break;
+            if (choice == 1) {
+                Random rand = new Random();
+                System.out.println("Restocking All Medications...\n");
+                for (Medication med : medications) {
+                    int restockAmount = rand.nextInt(51) + 10; // Randomly gets a stock amount between 10 and 60. //
+                    med.setQuantity(med.getQuantity() + restockAmount);
+                    System.out.println("Restocked " + med.getName() + " by " + restockAmount + ". New Quantity: " + med.getQuantity());
                 }
-            }
-            if (foundMed == null ) {
-                System.out.println("Medication not found.");
-                continue;
-            }
+                System.out.println("Medications have been restocked successfully!");
 
-            System.out.println("Enter the quantity to add: ");
-            int restockAmount;
-            try {
-                restockAmount = Integer.parseInt(scanner.nextLine());
-                if (restockAmount < 0) {
-                    System.out.println("Invalid amount. Please enter a positive number.");
+            // Restocking by medication name/ID // 
+            } else if (choice == 2) {
+                System.out.println("Enter medication name/ID to restock");
+                String input = scanner.nextLine().trim();
+
+                Medication foundMed = null; 
+
+                for (Medication med : medications) {
+                    if (med.getName().equalsIgnoreCase(input) || String.valueOf(med.getId()).equals(input)) {
+                        foundMed = med;
+                        break;
+                    }
+                }
+                if (foundMed == null ) {
+                    System.out.println("Medication not found.");
                     continue;
                 }
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid number.");
-                continue;
-            }
 
-            foundMed.setQuantity(foundMed.getQuantity() + restockAmount);
-            System.out.println("Successfully restocked " + foundMed.getName() + " by " + restockAmount + " . New Quanity: " + foundMed.getQuantity());
-        }else if (choice == 3) {
-                System.out.println("Returning to Main Menu...");
-                break;
-        } else {
-            System.out.println("Invalid option. Please select 1,2, or 3.");
+                System.out.println("Enter the quantity to add: ");
+                int restockAmount;
+                try {
+                    restockAmount = Integer.parseInt(scanner.nextLine());
+                    if (restockAmount < 0) {
+                        System.out.println("Invalid amount. Please enter a positive number.");
+                        continue;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input. Please enter a valid number.");
+                    continue;
+                }
+
+                foundMed.setQuantity(foundMed.getQuantity() + restockAmount);
+                System.out.println("Successfully restocked " + foundMed.getName() + " by " + restockAmount + " . New Quanity: " + foundMed.getQuantity());
+            }else if (choice == 3) {
+                    System.out.println("Returning to Main Menu...");
+                    break;
+            } else {
+                System.out.println("Invalid option. Please select 1, 2, or 3.");
+            }
         }
-    }
     }
 
     // Method to add a new patient //
-
-    public void addANewPatient(Scanner scanner) {
+    public void addANewPatient() {
         System.out.println("\nEnter Patient Details:");
     
         System.out.print("Enter Patient's ID: ");
@@ -530,27 +532,25 @@ public class MedicationTrackingSystem {
         System.out.println("Patient added successfully: " + newPatient);
     }
     
-
     // Method to add a doctor //
-
     public void addANewDoctor(Scanner scanner) {
 
-        System.out.println("\nEnter Doctor Details:");
+        System.out.println("\nEnter Doctor Details: ");
         System.out.println("Enter Doctor's ID: ");
         int id = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.println("Enter Doctor's Name");
+        System.out.println("Enter Doctor's Name: ");
         String name = scanner.nextLine();
     
-        System.out.println("Enter Doctor's Age");
+        System.out.println("Enter Doctor's Age: ");
         int age = scanner.nextInt();
         scanner.nextLine();
 
         System.out.print("Enter Phone #: ");
         String phone = scanner.nextLine();
 
-        System.out.println("Enter Doctor's Specialty");
+        System.out.println("Enter Doctor's Specialty: ");
         String specialty = scanner.nextLine();
 
         Doctor newDoctor = new Doctor(id, name, age, phone, specialty);
@@ -560,7 +560,7 @@ public class MedicationTrackingSystem {
 
     // Method to add a new medication //
     public void addANewMedication (Scanner scanner) {
-        System.out.println("\nEnter Medication Details:");
+        System.out.println("\nEnter Medication Details: ");
         System.out.print("ID: ");
         int id = scanner.nextInt();
         scanner.nextLine(); 
@@ -584,21 +584,27 @@ public class MedicationTrackingSystem {
             try {
                 expirationDate = LocalDate.parse(dateInput, formatter);
                 if (expirationDate.isBefore(LocalDate.now())) {
-                    System.out.println("Warning: This medication is already expired.");
+                    System.out.println("\nWarning: This medication is already expired.");
                 }
             } catch (DateTimeParseException e) {
-                System.out.println("Invalid date format. Please use yyyy-MM-dd.");
+                System.out.println("\nInvalid date format. Please use yyyy-MM-dd.");
             }
         }
     
         Medication newMedication = new Medication(id, name, dose, quantity, expirationDate);
         medications.add(newMedication);
-        System.out.println("Medication added successfully: " + newMedication);
+        System.out.println("\nMedication added successfully: " + newMedication);
     }
 
     // Method to remove patient by ID and if not found will display a message //
     public void removePatient(Scanner scanner) {
         while (true) { 
+            
+            displayPatients();
+
+            System.out.print("\nEnter Patient ID to remove (or type 'exit' to return to Main Menu): ");
+
+            
             String input = scanner.nextLine().trim();
     
             if (input.equalsIgnoreCase("exit")) {
@@ -635,6 +641,13 @@ public class MedicationTrackingSystem {
     // Method to remove doctor and if not found will display a message //
     public void removeDoctor(Scanner scanner) {
     while (true) { 
+        
+        // Print list of doctors //
+        System.out.println("\nList of Doctors:");
+        for (Doctor doctor : doctors) {
+            System.out.println(doctor);
+        }
+        
         System.out.print("\nEnter Doctor ID to remove (or type 'exit' to return to Main Menu): ");
         String input = scanner.nextLine().trim();
 
@@ -669,7 +682,15 @@ public class MedicationTrackingSystem {
     }
 }
 
+    // Method to remove medication and if not found will display a message //
     public void removeMedication(Scanner scanner) {
+        
+        // List of medications //
+        System.out.println("\nList of Medications:");
+        for (Medication medication : medications) {
+            System.out.println(medication);
+        }
+        
         while (true) { 
             System.out.print("\nEnter Medication ID to remove (or type 'exit' to return to Main Menu): ");
             String input = scanner.nextLine().trim();

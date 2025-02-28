@@ -15,7 +15,7 @@ public class Menu {
             System.out.println();
             System.out.println("1: Add A New Patient");
             System.out.println("2: Add A New Doctor");
-            System.out.println("3: Add New Medication To Pharmacy");
+            System.out.println("3: Add A New Medication To Pharmacy");
             System.out.println("4: Delete Patient");
             System.out.println("5: Delete Doctor");
             System.out.println("6: Delete Medication");
@@ -35,7 +35,7 @@ public class Menu {
             scanner.nextLine(); // Fixes issue where it printed the menu twice //
 
             switch (option) {
-                case 1 -> addANewPatient(scanner, system);
+                case 1 -> addANewPatient(system);
                 case 2 -> addANewDoctor(scanner,system);
                 case 3 -> addNewMedicationToPharmacy(scanner, system);
                 case 4 -> deletePatient(scanner, system);
@@ -50,7 +50,7 @@ public class Menu {
                 case 13 -> printScriptsForSpecificDoctor(scanner, system);
                 case 14 -> restockPharmacyDrugs(scanner, system);
                 case 15 -> searchForPatMedDoc(scanner, system);
-                case 16 -> assignPatientToDoctor(scanner, system);
+                case 16 -> assignPatientToDoctor(system);
                 case 17 -> {
                     exit = true;
                     System.out.println("Exiting The System! Good Bye!");
@@ -61,33 +61,16 @@ public class Menu {
 
     }
 
-    private static void addANewPatient(Scanner scanner, MedicationTrackingSystem system) {
-        System.out.println("Enter the patient's ID: ");
-        int id = scanner.nextInt();
-        
-        System.out.println("Enter the patient's name: ");
-        String name = scanner.next();
-        
-        System.out.println("Enter the patient's age: ");
-        int age = scanner.nextInt();
-        
-        System.out.println("Enter the patient's phone number: ");
-        String phone = scanner.next();
-        
-        Patient patient = new Patient(id, name, age, phone);
-        system.addPatient(patient);
-        System.out.println("Patient added successfully!");
-
-        system.displayPatients();
-
+    private static void addANewPatient(MedicationTrackingSystem system) {
+        system.addANewPatient();
     }
-    private static void assignPatientToDoctor(Scanner scanner, MedicationTrackingSystem system) {
-    system.assignPatientToDoctor();
-}
+    private static void assignPatientToDoctor(MedicationTrackingSystem system) {
+        system.assignPatientToDoctor();
+    }
     
 
     private static void addANewDoctor(Scanner scanner, MedicationTrackingSystem system) {
-    system.addANewDoctor(scanner);
+        system.addANewDoctor(scanner);
     }
 
     private static void addNewMedicationToPharmacy(Scanner scanner, MedicationTrackingSystem system) {
@@ -95,36 +78,27 @@ public class Menu {
     }
 
     private static void deletePatient(Scanner scanner, MedicationTrackingSystem system) {
-    system.removePatient(scanner);
+        system.removePatient(scanner);
     }
 
     private static void deleteDoctor(Scanner scanner, MedicationTrackingSystem system) {
-    system.removeDoctor(scanner);
+        system.removeDoctor(scanner);
     }
 
     private static void deleteMedication(Scanner scanner, MedicationTrackingSystem system) {
-    system.removeMedication(scanner);
+        system.removeMedication(scanner);
     }
 
-    private static void editPatient(Scanner scanner, MedicationTrackingSystem system) {
-        System.out.print("Enter Patient ID: ");
-        int id = scanner.nextInt();
-        scanner.nextLine(); 
-        system.editPatient(id);
+    private static void editPatient(Scanner scanner, MedicationTrackingSystem system) { 
+        system.editPatient(scanner);
     }
 
     private static void editDoctor(Scanner scanner, MedicationTrackingSystem system) {
-        System.out.print("Enter Doctor ID: ");
-        int id = scanner.nextInt();
-        scanner.nextLine(); 
-        system.editDoctor(id);
+        system.editDoctor(scanner);
     }
 
     private static void editMedication(Scanner scanner, MedicationTrackingSystem system) {
-        System.out.print("Enter Medication ID: ");
-        int id = scanner.nextInt();
-        scanner.nextLine(); 
-        system.editMedication(id);
+        system.editMedication(scanner);
     }
 
     private static void restockPharmacyDrugs(Scanner scanner, MedicationTrackingSystem system) {
@@ -132,6 +106,9 @@ public class Menu {
     }
 
     private static void printScriptsForSpecificDoctor(Scanner scanner, MedicationTrackingSystem system) {
+        
+        system.displayDoctors();
+        
         System.out.print("Enter Doctor ID: ");
         
         if (scanner.hasNextInt()) { 
@@ -146,12 +123,16 @@ public class Menu {
 
 
     private static void processANewScript(Scanner scanner, MedicationTrackingSystem system) {
+
+        system.displayPatients();
         System.out.println("Enter Patient ID: ");
         int patientID = scanner.nextInt();
 
+        system.displayDoctors();
         System.out.println("Enter Doctor ID: ");
         int doctorID = scanner.nextInt();
 
+        system.displayMedications();
         System.out.println("Enter Medication ID: ");
         int medicationID = scanner.nextInt();
 
@@ -160,21 +141,15 @@ public class Menu {
     }
 
     private static void checkExpiredMeds(MedicationTrackingSystem system) {
-      system.checkExpiredMeds();
+        system.checkExpiredMeds();
     }
 
     private static void printPharmacyReport(MedicationTrackingSystem system) {
-      system.generateReport();
+        system.generateReport();
     }
 
-    
     private static void searchForPatMedDoc(Scanner scanner, MedicationTrackingSystem system) {
-
         system.interactiveSearch(scanner);
-
     }
-    
-
-    
 
 }
