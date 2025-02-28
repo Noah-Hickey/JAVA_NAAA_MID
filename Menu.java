@@ -36,7 +36,7 @@ public class Menu {
 
             switch (option) {
                 case 1 -> addANewPatient(scanner, system);
-                case 2 -> addANewDoctor(scanner);
+                case 2 -> addANewDoctor(scanner,system);
                 case 3 -> addNewMedicationToPharmacy(scanner, system);
                 case 4 -> deletePatient(scanner, system);
                 case 5 -> deleteDoctor(scanner, system);
@@ -86,24 +86,24 @@ public class Menu {
 }
     
 
-    private static void addANewDoctor(Scanner scanner) {
-    
+    private static void addANewDoctor(Scanner scanner, MedicationTrackingSystem system) {
+    system.addANewDoctor(scanner);
     }
 
     private static void addNewMedicationToPharmacy(Scanner scanner, MedicationTrackingSystem system) {
-
+        system.addANewMedication(scanner);
     }
 
     private static void deletePatient(Scanner scanner, MedicationTrackingSystem system) {
-
+    system.removePatient(scanner);
     }
 
     private static void deleteDoctor(Scanner scanner, MedicationTrackingSystem system) {
-
+    system.removeDoctor(scanner);
     }
 
     private static void deleteMedication(Scanner scanner, MedicationTrackingSystem system) {
-
+    system.removeMedication(scanner);
     }
 
     private static void editPatient(Scanner scanner, MedicationTrackingSystem system) {

@@ -1,6 +1,5 @@
 
 import java.time.LocalDate;
-import java.util.Random;
 
 public class Medication {
     private int id;
@@ -9,23 +8,24 @@ public class Medication {
     private int quantity;
     private LocalDate expirationDate;
 
+    // Constructors //
 
-    // Method to generate a random expiry date that includes past and future - assisted by ChatGPT//
-
-    private LocalDate generateRandomExpiryDate() {
-        Random rand = new Random();
-        int DaysOffset = rand.nextInt(4 * 365) - (2 * 365); // 2 years before and after the current day //
-        return LocalDate.now().plusDays(DaysOffset);
+    // With an expiry date specified //
+    public Medication(int id, String name, String dose, int quantity, LocalDate expirationDate) {
+        this.id = id;
+        this.name = name;
+        this.dose = dose;
+        this.quantity = quantity;
+        this.expirationDate = expirationDate;
     }
 
-    // Constructor //
-
+    // Without a specified expiry date //
     public Medication(int id, String name, String dose, int quantity) {
         this.id = id;
         this.name = name;
         this.dose = dose;
         this.quantity = quantity;
-        this.expirationDate = generateRandomExpiryDate();
+        this.expirationDate = LocalDate.now().plusYears(1); // Default: 1 year from today if not specified//
     }
 
     // Getters //
@@ -46,8 +46,8 @@ public class Medication {
         return quantity;
     }
 
-    public LocalDate getExpirationDate () {
-        return expirationDate;
+    public LocalDate getExpirationDate() { 
+        return expirationDate; 
     }
 
     // Setters //
@@ -62,6 +62,10 @@ public class Medication {
     
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public void setExpirationDate(LocalDate expirationDate) { 
+        this.expirationDate = expirationDate; 
     }
 
     // toString method //

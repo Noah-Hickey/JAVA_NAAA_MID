@@ -1,4 +1,7 @@
 // import java.lang.classfile.instruction;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -500,7 +503,205 @@ public class MedicationTrackingSystem {
             System.out.println("Invalid option. Please select 1,2, or 3.");
         }
     }
-
     }
 
+    // Method to add a new patient //
+
+    public void addANewPatient(Scanner scanner) {
+        System.out.println("\nEnter Patient Details:");
+    
+        System.out.print("Enter Patient's ID: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); 
+    
+        System.out.print("Enter Patient's Name: ");
+        String name = scanner.nextLine();
+    
+        System.out.print("Enter Patient's Age: ");
+        int age = scanner.nextInt();
+        scanner.nextLine(); 
+    
+        System.out.print("Enter Patient's Phone #: ");
+        String phone = scanner.nextLine();
+    
+        Patient newPatient = new Patient(id, name, age, phone);
+        patients.add(newPatient);
+        
+        System.out.println("Patient added successfully: " + newPatient);
+    }
+    
+
+    // Method to add a doctor //
+
+    public void addANewDoctor(Scanner scanner) {
+
+        System.out.println("\nEnter Doctor Details:");
+        System.out.println("Enter Doctor's ID: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Enter Doctor's Name");
+        String name = scanner.nextLine();
+    
+        System.out.println("Enter Doctor's Age");
+        int age = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.print("Enter Phone #: ");
+        String phone = scanner.nextLine();
+
+        System.out.println("Enter Doctor's Specialty");
+        String specialty = scanner.nextLine();
+
+        Doctor newDoctor = new Doctor(id, name, age, phone, specialty);
+        doctors.add(newDoctor);
+        System.out.println("Doctor added successfully: " + newDoctor);
+    }
+
+    // Method to add a new medication //
+    public void addANewMedication (Scanner scanner) {
+        System.out.println("\nEnter Medication Details:");
+        System.out.print("ID: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); 
+    
+        System.out.print("Name: ");
+        String name = scanner.nextLine();
+    
+        System.out.print("Dose: ");
+        String dose = scanner.nextLine();
+    
+        System.out.print("Quantity: ");
+        int quantity = scanner.nextInt();
+        scanner.nextLine(); 
+
+        LocalDate expirationDate = null;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    
+        while (expirationDate == null) {
+            System.out.print("Enter Expiration Date (yyyy-MM-dd): ");
+            String dateInput = scanner.nextLine();
+            try {
+                expirationDate = LocalDate.parse(dateInput, formatter);
+                if (expirationDate.isBefore(LocalDate.now())) {
+                    System.out.println("Warning: This medication is already expired.");
+                }
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid date format. Please use yyyy-MM-dd.");
+            }
+        }
+    
+        Medication newMedication = new Medication(id, name, dose, quantity, expirationDate);
+        medications.add(newMedication);
+        System.out.println("Medication added successfully: " + newMedication);
+    }
+
+    // Method to remove patient by ID and if not found will display a message //
+    public void removePatient(Scanner scanner) {
+        while (true) { 
+            String input = scanner.nextLine().trim();
+    
+            if (input.equalsIgnoreCase("exit")) {
+                System.out.println("Returning to Main Menu...");
+                return;
+            }
+    
+            int id;
+            try {
+                id = Integer.parseInt(input); 
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a valid numeric Patient ID.");
+                continue;
+            }
+    
+            Patient foundPatient = null;
+            for (Patient patient : patients) {
+                if (patient.getId() == id) {
+                    foundPatient = patient;
+                    break;
+                }
+            }
+    
+            if (foundPatient != null) {
+                patients.remove(foundPatient);
+                System.out.println("Patient removed: " + foundPatient.getName());
+                return; 
+            } else {
+                System.out.println("Error: Patient ID not found. Try again or type 'exit' to return to the Main Menu.");
+            }
+        }
+    }
+
+    // Method to remove doctor and if not found will display a message //
+    public void removeDoctor(Scanner scanner) {
+    while (true) { 
+        System.out.print("\nEnter Doctor ID to remove (or type 'exit' to return to Main Menu): ");
+        String input = scanner.nextLine().trim();
+
+        if (input.equalsIgnoreCase("exit")) {
+            System.out.println("Returning to Main Menu...");
+            return;
+        }
+
+        int id;
+        try {
+            id = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input! Please enter a valid numeric Doctor ID.");
+            continue;
+        }
+
+        Doctor foundDoctor = null;
+        for (Doctor doctor : doctors) {
+            if (doctor.getId() == id) {
+                foundDoctor = doctor;
+                break;
+            }
+        }
+
+        if (foundDoctor != null) {
+            doctors.remove(foundDoctor);
+            System.out.println("Doctor removed: " + foundDoctor.getName());
+            return;
+        } else {
+            System.out.println("Error: Doctor ID not found. Try again or type 'exit' to return to the Main Menu.");
+        }
+    }
+}
+
+    public void removeMedication(Scanner scanner) {
+        while (true) { 
+            System.out.print("\nEnter Medication ID to remove (or type 'exit' to return to Main Menu): ");
+            String input = scanner.nextLine().trim();
+    
+            if (input.equalsIgnoreCase("exit")) {
+                System.out.println("Returning to Main Menu...");
+                return;
+            }
+    
+            int id;
+            try {
+                id = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a valid numeric Medication ID.");
+                continue;
+            }
+    
+            Medication foundMedication = null;
+            for (Medication medication : medications) {
+                if (medication.getId() == id) {
+                    foundMedication = medication;
+                    break;
+                }
+            }
+    
+            if (foundMedication != null) {
+                medications.remove(foundMedication);
+                System.out.println("Medication removed: " + foundMedication.getName());
+                return;
+            } else {
+                System.out.println("Error: Medication ID not found. Try again or type 'exit' to return to the Main Menu.");
+            }
+        }
+    }
 }
