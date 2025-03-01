@@ -149,6 +149,8 @@ public class MedicationTrackingSystem{
         System.out.println("\nSuccess! Prescription added for " + patient.getName() + ". Prescribed by Dr. " + doctor.getName());
     }
 
+
+    // Method for a doctor to assign a script to a patient
     public void processANewScript() {
         displayPatients();
         System.out.println("Enter Patient ID: ");
