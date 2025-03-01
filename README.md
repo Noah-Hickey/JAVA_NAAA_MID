@@ -117,8 +117,6 @@ This Pharmacy Management System is designed to manage patient information, medic
 | Medications   | ID, Name, Dose, Quantity, ExpiryDate          |
 | Prescriptions | ID, DoctorID, PatientID, MedicationID, Expiry |
 
-(*Include an entity-relationship diagram*)
-
 ![entity-relationship diagram](https://picsum.photos/200/300 "Medication Tracking System Database")
 
 ### Repository Access
