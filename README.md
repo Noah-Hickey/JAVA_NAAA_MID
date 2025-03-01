@@ -75,7 +75,6 @@ This Pharmacy Management System is designed to manage patient information, medic
 
 ### Class Diagram
 
-(*Include a UML diagram showing class relationships*)
 ![class diagram](ClassDiagram.png)
 
 
@@ -119,7 +118,6 @@ This Pharmacy Management System is designed to manage patient information, medic
 | Medications   | ID, Name, Dose, Quantity, ExpiryDate          |
 | Prescriptions | ID, DoctorID, PatientID, MedicationID, Expiry |
 
-(*Include an entity-relationship diagram*)
 
 ![entity-relationship diagram](ERD.png)
 
