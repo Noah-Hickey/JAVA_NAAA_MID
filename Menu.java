@@ -109,41 +109,13 @@ public class Menu {
     }
 
     private static void printScriptsForSpecificDoctor(MedicationTrackingSystem system) {
+        system.printScriptsForSpecificDoctor();
         
-        system.displayDoctors();
-        
-        System.out.print("Enter Doctor ID: ");
-        
-        if (system.scanner.hasNextInt()) { 
-            int doctorID = system.scanner.nextInt();
-            system.scanner.nextLine();  
-            system.generateDoctorReport(doctorID);
-        } else {
-            System.out.println("Invalid input! Please enter a valid Doctor ID.");
-            system.scanner.nextLine(); 
-        }
     }
-
 
     private static void processANewScript(MedicationTrackingSystem system) {
 
-        system.displayPatients();
-        System.out.println("Enter Patient ID: ");
-        int patientID = system.scanner.nextInt();
-        system.scanner.nextLine();
-
-        system.displayDoctors();
-        System.out.println("Enter Doctor ID: ");
-        int doctorID = system.scanner.nextInt();
-        system.scanner.nextLine();
-
-        system.displayMedications();
-        System.out.println("Enter Medication ID: ");
-        int medicationID = system.scanner.nextInt();
-        system.scanner.nextLine();
-
-        system.acceptPrescription(patientID, doctorID, medicationID);
-
+        system.processANewScript();
     }
 
     private static void checkExpiredMeds(MedicationTrackingSystem system) {
