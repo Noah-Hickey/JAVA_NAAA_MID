@@ -99,6 +99,7 @@ public class MedicationTrackingSystem{
         }
     }
 
+    // Method to match an patient with a doctor
     public void assignPatientToDoctor() {
         System.out.println("\n=== Assign a Patient to a Doctor ===");
 
@@ -517,6 +518,23 @@ public class MedicationTrackingSystem{
                     return; 
                 }
             }
+        }
+    }
+
+
+    // Method that prints a doctor's prescriptions
+    public void printScriptsForSpecificDoctor() {
+        displayDoctors();
+        
+        System.out.print("Enter Doctor ID: ");
+        
+        if (scanner.hasNextInt()) { 
+            int doctorID = scanner.nextInt();
+            scanner.nextLine();  
+            generateDoctorReport(doctorID);
+        } else {
+            System.out.println("Invalid input! Please enter a valid Doctor ID.");
+            scanner.nextLine(); 
         }
     }
 
