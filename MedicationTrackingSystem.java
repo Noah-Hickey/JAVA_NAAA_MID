@@ -149,6 +149,25 @@ public class MedicationTrackingSystem{
         System.out.println("\nSuccess! Prescription added for " + patient.getName() + ". Prescribed by Dr. " + doctor.getName());
     }
 
+    public void processANewScript() {
+        displayPatients();
+        System.out.println("Enter Patient ID: ");
+        int patientID = scanner.nextInt();
+        scanner.nextLine();
+
+        displayDoctors();
+        System.out.println("Enter Doctor ID: ");
+        int doctorID = scanner.nextInt();
+        scanner.nextLine();
+
+        displayMedications();
+        System.out.println("Enter Medication ID: ");
+        int medicationID = scanner.nextInt();
+        scanner.nextLine();
+
+        acceptPrescription(patientID, doctorID, medicationID);
+    }
+
     // Method to find a patient by ID //
     private Patient findPatientByID (int id) {
         for (Patient p : patients) {
